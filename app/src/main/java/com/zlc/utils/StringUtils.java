@@ -96,4 +96,26 @@ public class StringUtils {
         else return carnumber.matches(carnumRegex);
     }
 
+    /**
+     * 验证价格
+     * 理工学科
+     * 条件一：格式 0232 错误，023.232错误，0.23正确，202.02正确（错误的0开头为错误）
+     * 条件二：整数最多10位，小数至多2位 条
+     * 件三：成员当然不能为非数字，23.a错误 23.0a错误等
+     * 条件四：带小数点必须要有小数位，233. 错误
+     */
+
+    public static boolean isPrice(String price){
+        String carnumRegex = "^(0|[1-9][0-9]{0,9})(\\.[0-9]{1,2})?$";
+        if (isEmpty(price)) return false;
+        else return price.matches(carnumRegex);
+    }
+
+    public static void main(String[] args){
+        System.out.println(isPrice("01.22222"));
+        System.out.println(isPrice("1.22222"));
+        System.out.println(isPrice("0.22"));
+        System.out.println(isPrice("1."));
+        System.out.println(isPrice("1"));
+    }
 }
