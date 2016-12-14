@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/UtilsWorld.iml" filepath="$PROJECT_DIR$/UtilsWorld.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dispatcheventdemo/dispatcheventdemo.iml" filepath="$PROJECT_DIR$/dispatcheventdemo/dispatcheventdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/pageindicatorview/pageindicatorview.iml" filepath="$PROJECT_DIR$/pageindicatorview/pageindicatorview.iml" />
       <module fileurl="file://$PROJECT_DIR$/recycletimepageview/recycletimepageview.iml" filepath="$PROJECT_DIR$/recycletimepageview/recycletimepageview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social_sdk_library511_prj/social_sdk_library511_prj.iml" filepath="$PROJECT_DIR$/social_sdk_library511_prj/social_sdk_library511_prj.iml" />
     </modules>
   </component>
 </project>

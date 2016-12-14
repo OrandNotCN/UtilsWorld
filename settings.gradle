@@ -1,1 +1,1 @@
-include ':app', ':recycletimepageview', ':pageindicatorview'
+include ':app', ':recycletimepageview', ':pageindicatorview', ':dispatcheventdemo', ':social_sdk_library511_prj'
