@@ -10,20 +10,16 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/dispatcheventdemo" />
             <option value="$PROJECT_DIR$/pageindicatorview" />
             <option value="$PROJECT_DIR$/recycletimepageview" />
-            <option value="$PROJECT_DIR$/social_sdk_library511_prj" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/dispatcheventdemo" />
             <option value="$PROJECT_DIR$/pageindicatorview" />
             <option value="$PROJECT_DIR$/recycletimepageview" />
-            <option value="$PROJECT_DIR$/social_sdk_library511_prj" />
           </set>
         </option>
       </GradleProjectSettings>
