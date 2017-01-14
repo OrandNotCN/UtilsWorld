@@ -46,12 +46,15 @@ public class AirAccessibilityService extends AccessibilityService {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:
                 //当通知栏发生改变时
                 List<CharSequence> texts = event.getText();
+//                Log.e(">>>>>>>>>>>>>event:",event.toString());
                 if (!texts.isEmpty()) {
                     for (CharSequence text : texts) {
                         String content = text.toString();
-                        if (content.contains("[微信红包]")) {
+                        if (content.contains("[微信红包]")||content.contains("[QQ红包]")) {
                             if (event.getParcelableData() != null &&
                                     event.getParcelableData() instanceof Notification) {
+                                CommonUtils.playMusic(this);
+                                CommonUtils.shark(this);
                                 Notification notification = (Notification) event.getParcelableData();
                                 PendingIntent pendingIntent = notification.contentIntent;
                                 try {
@@ -122,7 +125,6 @@ public class AirAccessibilityService extends AccessibilityService {
     }
 
     private void getLastPacket() {
-
         AccessibilityNodeInfo rootNode = getRootInActiveWindow();
         recycle(rootNode);
         Log.e("AAAAAAAA", "当前页面红包数老方法" + parents.size());
