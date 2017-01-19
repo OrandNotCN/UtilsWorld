@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">WX HongBao</string>
-    <string name="description">微信6.3.32抢红包插件,可以在对话内强红包,可开启关闭本功能,默认关闭</string>
-    <string name="label">微信6.3.32版自动抢红包</string>
+    <string name="description">微信抢红包插件,可开启关闭本功能,默认关闭</string>
+    <string name="label">微信自动抢红包</string>
+
+    <string-array name="wx6_5_3">
+        <item>be_</item>//打开红包按钮id
+        <item>gr</item>//退出红包界面id
+        <item>gr</item>//退出聊天界面id
+    </string-array>
+    <string-array name="wx6_3_32">
+        <item>bg7</item>
+        <item>gq</item>
+        <item>gr</item>
+    </string-array>
 </resources>
