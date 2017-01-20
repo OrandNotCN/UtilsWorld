@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WX HongBao</string>
+    <string name="app_name">周家微信抢红包</string>
     <string name="description">微信抢红包插件,可开启关闭本功能,默认关闭</string>
     <string name="label">微信自动抢红包</string>
 
@@ -13,4 +13,14 @@
         <item>gq</item>
         <item>gr</item>
     </string-array>
+
+    <string-array name="delaystr">
+        <item>不延迟</item>
+        <item>1秒</item>
+        <item>2秒</item>
+        <item>3秒</item>
+        <item>4秒</item>
+        <item>5秒</item>
+    </string-array>
+
 </resources>

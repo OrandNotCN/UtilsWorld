@@ -6,6 +6,8 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
@@ -15,8 +17,12 @@ public class RobService extends AccessibilityService {
     private static final int NOTIFICATION_ID = 1001;
 
     private AccessibilityNodeInfo lastRPNode;
-
     private boolean isGet = true;
+
+    public static boolean isAuto = false ;
+    public static boolean isShake = true;
+    public static boolean isVoice = true;
+    public static int delay = 0;
 
     @Override
     public void onCreate() {
@@ -47,7 +53,7 @@ public class RobService extends AccessibilityService {
                 if (!isGet && className.equals("com.tencent.mm.ui.LauncherUI")) {
                     getPacket();
                 } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")) {
-                    openPacket();
+                    handler.sendEmptyMessageDelayed(2,delay*1000);
                 } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI")) {
                     if(!isGet)
                     close();
@@ -82,16 +88,16 @@ public class RobService extends AccessibilityService {
                 //如果微信红包的提示信息,则模拟点击进入相应的聊天窗口
                 if (content.contains("[微信红包]")) {
                     if (event.getParcelableData() != null && event.getParcelableData() instanceof Notification) {
-                        isGet =false;
+                        handler.sendEmptyMessage(1);
+                        if (!isAuto) return;
                         Notification notification = (Notification) event.getParcelableData();
                         PendingIntent pendingIntent = notification.contentIntent;
                         try {
+                            isGet =false;
                             pendingIntent.send();
                         } catch (PendingIntent.CanceledException e) {
                             e.printStackTrace();
                         }
-                        CommonUtils.playMusic(this);
-                        CommonUtils.shark(this);
                     }
                 }
             }
@@ -191,4 +197,21 @@ public class RobService extends AccessibilityService {
         super.onDestroy();
         startService(new Intent(this, RobService.class));
     }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    if(isVoice)
+                    CommonUtils.playMusic(RobService.this);
+                    if(isShake)
+                    CommonUtils.shark(RobService.this);
+                    break;
+                case 2:
+                    openPacket();
+                    break;
+            }
+        }
+    };
 }

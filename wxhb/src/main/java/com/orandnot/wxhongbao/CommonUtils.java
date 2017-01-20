@@ -9,6 +9,8 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
+import android.provider.Settings;
+import android.text.TextUtils;
 
 import java.util.List;
 
@@ -106,5 +108,44 @@ public class CommonUtils {
             }
         }
         return isWork;
+    }
+
+
+    public static boolean isAccessibilitySettingsOn(Context mContext,Class clz) {
+        int accessibilityEnabled = 0;
+        final String service = mContext.getPackageName() + "/" + clz.getCanonicalName();
+        try {
+            accessibilityEnabled = Settings.Secure.getInt(
+                    mContext.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+            LogUtils.i("accessibilityEnabled = " + accessibilityEnabled);
+        } catch (Settings.SettingNotFoundException e) {
+            LogUtils.e("Error finding setting, default accessibility to not found: "
+                    + e.getMessage());
+        }
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+
+        if (accessibilityEnabled == 1) {
+            LogUtils.v("***ACCESSIBILITY IS ENABLED*** -----------------");
+            String settingValue = Settings.Secure.getString(
+                    mContext.getApplicationContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (settingValue != null) {
+                mStringColonSplitter.setString(settingValue);
+                while (mStringColonSplitter.hasNext()) {
+                    String accessibilityService = mStringColonSplitter.next();
+
+                    LogUtils.v("-------------- > accessibilityService :: " + accessibilityService + " " + service);
+                    if (accessibilityService.equalsIgnoreCase(service)) {
+                        LogUtils.v("We've found the correct setting - accessibility is switched on!");
+                        return true;
+                    }
+                }
+            }
+        } else {
+            LogUtils.v("***ACCESSIBILITY IS DISABLED***");
+        }
+
+        return false;
     }
 }
